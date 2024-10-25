@@ -38,7 +38,7 @@ The cleaned data is stored in a SQLite database. The website's "Insights" page p
 When we run this project on our local servers we mainly get 4 sections to analyze the data based on various trends.
 1) Analyse trends based on year : Discover the yearwise cutoff variations and delve into valuable insights on admission trends.
 2) Analyse trends based on Round : Analyse trends based on roundwise cutoffs for years.
-3) Best institute for coursed : Find best IIT for selected course based on last year's data.
+3) Best institute for course : Find best IIT for selected course based on last year's data.
 4) Know your IIT : Explore your IIT possibilities with last year's cutoffs,revealing the institution that could be your future.
 
 ## Ouptut Files
