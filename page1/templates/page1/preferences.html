@@ -442,18 +442,19 @@ function show3rdProgramnameDropdown(programtypeDropdown) {
             update( rank_val,Prog_val,Prog_val_2,Prog_val_3);
           });
           
-        function update(rank,programname,programname_2,programname_3) {
-            const xhr = new XMLHttpRequest();
-            const url = `/get-knowiit/?rank=${rank}&programname=${programname}&programname_2=${programname_2}&programname_3=${programname_3}`;
-            xhr.open('GET', url, true);
-            xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
-                    const responseData = JSON.parse(xhr.responseText);
-                    renderdata(responseData);
-                }
-            };
-            xhr.send();
+        function update(rank, programname, programname_2, programname_3) {
+    const xhr = new XMLHttpRequest();
+    const url = `/get-preferences/?rank=${rank}&programname=${programname}&programname_2=${programname_2}&programname_3=${programname_3}`;
+    xhr.open('GET', url, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            const responseData = JSON.parse(xhr.responseText);
+            renderdata(responseData);
         }
+    };
+    xhr.send();
+}
+
         function renderdata(data) {
               
               var resultContainer = document.getElementById("resultContainer");
@@ -507,5 +508,3 @@ function show3rdProgramnameDropdown(programtypeDropdown) {
 </div>
 </body>
 </html>
-
-
