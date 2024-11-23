@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.db.models import F
+from django.db.models import Q
 from .models import Extract
 from django.views.decorators.http import require_GET
 
@@ -198,24 +199,23 @@ def get_roundwise_type(request):
 
 
 def get_preferences(request):
-    
     rank_val = request.GET.get('rank')
     programname_1 = request.GET.get('programname')
     programname_2 = request.GET.get('programname_2')
     programname_3 = request.GET.get('programname_3')
+
+    # Use Q objects to filter for any of the three program names
     data = Extract.objects.filter(
-        Year = 2023,
-        Program_name = programname_1,
-        Seat_type = "OPEN",
-        Gender = "Gender-Neutral",
-        Round = 3,
-        Program_duration = 4,
+        Year=2023,
+        Seat_type="OPEN",
+        Gender="Gender-Neutral",
+        Round=3,
+        Program_duration=4,
         Closing_rank__gte=rank_val
+    ).filter(
+        Q(Program_name=programname_1) | Q(Program_name=programname_2) | Q(Program_name=programname_3)
     ).order_by('Opening_rank').values()
-    
+
+    # Convert the queryset to a list and return as JSON
     data = list(data)
-    
     return JsonResponse(data, safe=False)
-
-
-
